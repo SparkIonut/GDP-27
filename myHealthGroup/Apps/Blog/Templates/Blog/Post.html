@@ -1,0 +1,40 @@
+{% extends 'Base_Patient.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <script src="{% static 'javascript/Blog/Post.js' %}"> </script>
+{% endblock %}
+    
+{% block content %}
+    
+    <div class="post">
+        <div class="post-header">
+            <div class="title">
+                <h2 style="font-family: Times New Roman">{{ Post.Title }}</h2>
+            </div>
+            <div class="date">
+                <i><b>Date </b>{{ Post.Posted_Date}}</i>
+            </div>
+            <div class="author">
+                <p><b>User: </b><a href="{% url 'account:account' account_id=Post.User.pk %}">{{ Post.User.username }}</a></p>
+            </div>
+            {% if Post.User == request.user %}
+                <div class="Edit">
+                    <button type="button" class="btn btn-primary" id="edit_button">Edit</button>
+                </div>
+            {% else %}
+                <div class="Like">
+                    <button type="button" class="btn btn-primary" id="like_button">{{ isLiked }}</button>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="description">
+            <b><i>Post Description</i></b>
+            <p>Here there is the description of the Post.</p>
+        </div>
+
+        <div class="comments">
+        </div>
+    </div>
+{% endblock %}

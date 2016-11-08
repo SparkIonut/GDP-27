@@ -1,0 +1,14 @@
+{% extends 'Base_Patient.html' %}
+
+{% block content %}
+	{% for post in Posts %} 
+		<div class="boxed">
+		    <div class="post-group">
+		        <h3 style="font-family: Times New Roman"><a href="{% url 'blog:post' post_id=post.pk %}">{{ post.Title }} 
+				</a></br><small>{{ post.Posted_Date }}</small></h3>
+		        <p><b>User: </b><a href="{% url 'account:account' account_id=post.User.pk %}">{{ post.User.username }}</a></p>
+		        <p><i>Likes: {{ post.Likes }} Comments: {{ post.Comments }}</i></p>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}
